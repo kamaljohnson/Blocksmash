@@ -146,6 +146,13 @@ public class GameBoard : MonoBehaviour {
                     BoardRotation.isRotating = true;
                     GameUIScript.TopTap = false;
                     GameUIScript.taped = false;
+                    if (TutorialManager.PlayerInTutorial)
+                    {
+                        if (TutorialManager.CurrentState == TutorialManager.TutorialState.HandTop)
+                        {
+                            TutorialManager.CurrentTutorialTaskDone = true;
+                        }
+                    }
                 }
                 if ((GameUIScript.RightTap || Input.GetKeyDown(KeyCode.RightArrow)) && !BoardRotation.isRotating)
                 {
@@ -153,6 +160,13 @@ public class GameBoard : MonoBehaviour {
                     GameUIScript.taped = false;
                     BoardRotation.rotationDestination = localLeft;
                     BoardRotation.isRotating = true;
+                    if (TutorialManager.PlayerInTutorial)
+                    {
+                        if (TutorialManager.CurrentState == TutorialManager.TutorialState.HandRight)
+                        {
+                            TutorialManager.CurrentTutorialTaskDone = true;
+                        }
+                    }
                 }
                 if ((GameUIScript.LeftTap || Input.GetKeyDown(KeyCode.LeftArrow)) && !BoardRotation.isRotating)
                 {
@@ -160,6 +174,13 @@ public class GameBoard : MonoBehaviour {
                     GameUIScript.taped = false;
                     BoardRotation.rotationDestination = localForward;
                     BoardRotation.isRotating = true;
+                    if (TutorialManager.PlayerInTutorial)
+                    {
+                        if (TutorialManager.CurrentState == TutorialManager.TutorialState.HandLeft)
+                        {
+                            TutorialManager.CurrentTutorialTaskDone = true;
+                        }
+                    }
                 }
             }
             if (!BoardRotation.isRotating)

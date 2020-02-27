@@ -1,11 +1,13 @@
 ﻿using Unity.UNetWeaver;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 
+    public TutorialManager tutorialManager;
     public static bool IsPlayingFirstTime = true;
     
     #region UI_ICONS
@@ -52,17 +54,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        
-        if (!PlayerPrefs.HasKey("firstPlay"))
-        {
-            Debug.Log("firstPlay");
-        }
-        else
-        {
-            //Play tutorial game
-            //PlayerPrefs.SetInt("firstPlay", 0);
-        }
-        
         FindObjectOfType<GameBoard>().Reset();
         
         AudioButton1.GetComponent<Image>().sprite = Icone_AudioOn;
@@ -108,6 +99,11 @@ public class GameManager : MonoBehaviour
         BottomCollisinTrigger.reachedNoRotationZone = false;
 
         FindObjectOfType<GameBoard>().CreateBlockSet();
+        if (!PlayerPrefs.HasKey("firstPlay"))
+        {
+            Debug.Log("firstPlay");
+            tutorialManager.StartTutorial();
+        }
     }
     public void Continue()
     {
