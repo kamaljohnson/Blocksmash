@@ -1,7 +1,4 @@
-﻿using Unity.UNetWeaver;
-using UnityEngine.SceneManagement;
-using UnityEngine;
-using UnityEngine.Serialization;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour

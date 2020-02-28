@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.UNetWeaver;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
@@ -43,15 +44,8 @@ public class TutorialManager : MonoBehaviour
         if (CurrentTutorialTaskDone)
         {
             CurrentTutorialTaskDone = false;
-            if (CurrentState == TutorialState.Complete)
-            {
-                PlayerPrefs.SetInt("firstPlay", 1);
-            }
-            else
-            {
-                CurrentState += 1;
-                ActivateTask();
-            }
+            CurrentState += 1;
+            ActivateTask();
         }
     }
 
@@ -92,6 +86,8 @@ public class TutorialManager : MonoBehaviour
                 break;
             case TutorialState.Complete:
                 handTopTap.gameObject.SetActive(false);
+                Debug.Log("CurrentState = Complete");
+                PlayerPrefs.SetInt("firstPlay", 1);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

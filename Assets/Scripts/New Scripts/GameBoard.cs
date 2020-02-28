@@ -191,24 +191,54 @@ public class GameBoard : MonoBehaviour {
                     MoveRight();
                     SwipeInput.swipeRight = false;
                     SwipeInput.swipeFlag = false;
+                    if (TutorialManager.PlayerInTutorial)
+                    {
+                        if (TutorialManager.CurrentState == TutorialManager.TutorialState.HandSlideLeft)
+                        {
+                            TutorialManager.CurrentTutorialTaskDone = true;
+                        }
+                    }
                 }
                 if ((SwipeInput.swipeLeft || Input.GetKeyDown(KeyCode.A)))
                 {
                     MoveLeft();
                     SwipeInput.swipeLeft = false;
                     SwipeInput.swipeFlag = false;
+                    if (TutorialManager.PlayerInTutorial)
+                    {
+                        if (TutorialManager.CurrentState == TutorialManager.TutorialState.HandSlideLeft)
+                        {
+                            TutorialManager.CurrentTutorialTaskDone = true;
+                        }
+                    }
                 }
                 if ((SwipeInput.swipeForward || Input.GetKeyDown(KeyCode.W)))
                 {
                     MoveForward();
                     SwipeInput.swipeForward = false;
                     SwipeInput.swipeFlag = false;
+                    
+                    if (TutorialManager.PlayerInTutorial)
+                    {
+                        if (TutorialManager.CurrentState == TutorialManager.TutorialState.HandSlideRight)
+                        {
+                            TutorialManager.CurrentTutorialTaskDone = true;
+                        }
+                    }
                 }
                 if ((SwipeInput.swipeBack || Input.GetKeyDown(KeyCode.S)))
                 {
                     MoveBack();
                     SwipeInput.swipeFlag = false;
                     SwipeInput.swipeBack = false;
+                    
+                    if (TutorialManager.PlayerInTutorial)
+                    {
+                        if (TutorialManager.CurrentState == TutorialManager.TutorialState.HandSlideRight)
+                        {
+                            TutorialManager.CurrentTutorialTaskDone = true;
+                        }
+                    }
                 }
                 if ((SwipeInput.TopTap || Input.GetKeyDown(KeyCode.DownArrow)) && !FastMotionFlag)
                 {
@@ -217,6 +247,14 @@ public class GameBoard : MonoBehaviour {
                     speed = 100;
                     FastMotionFlag = true;
                     SwipeInput.TopTap = false;
+                    
+                    if (TutorialManager.PlayerInTutorial)
+                    {
+                        if (TutorialManager.CurrentState == TutorialManager.TutorialState.HandTopTap)
+                        {
+                            TutorialManager.CurrentTutorialTaskDone = true;
+                        }
+                    }
                 }
             }
             if (!ReferenCecreated && !BoardRotation.isRotating && BoardBody.transform.position.y > -2)
